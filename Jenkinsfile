@@ -1,9 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Submit Stack') {
+        stage('create snapshot') {
             steps {
-            sh "aws s3 ls"
+            sh "aws ec2 create-snapshot --volume-id vol-059f47f3d630dcdaa --description "This is my root volume snapshot""
               }
              }
             }
