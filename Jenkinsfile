@@ -37,7 +37,7 @@ pipeline {
              
          stage('update OS'){
             steps {
-            sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i ./OS-update-ansible-jenkins/inventory update.yml'
+            sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i OS-update-ansible-jenkins/inventory update.yml'
             }
             }
         
