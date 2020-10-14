@@ -25,13 +25,13 @@ pipeline {
         
         stage('create snapshot for backup') {
             steps {
-            sh "aws ec2 create-snapshot --volume-id vol-059f47f3d630dcdaa --description "This is my root volume snapshot""
+            sh "aws ec2 create-snapshot --volume-id vol-038ad9d9f9963432a --description "This is my ansible-jenkins volume snapshot""
               }
              }
              
         stage('update OS')
             steps {
-            sh "ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i inventory, main.yml"
+            sh "ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i inventory, update.yml"
 
             }
         
