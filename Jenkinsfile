@@ -46,7 +46,7 @@ pipeline {
             }
            stage('Make sure updates done') {
             steps {
-            sh label: '', script: 'ansible [inventory.inv] -a lsb-release'
+            sh label: '', script: 'ansible [inventory.inv] -a "lsb_release -a"'
              
               }
              }
