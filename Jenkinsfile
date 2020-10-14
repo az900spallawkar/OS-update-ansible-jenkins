@@ -32,12 +32,14 @@ pipeline {
         stage('create snapshot for backup') {
             steps {
             sh label: '', script: 'aws ec2 create-snapshot --volume-id vol-038ad9d9f9963432a --region eu-west-2 --description "This is my ansible-jenkins volume snapshot"'
+             
               }
              }
              
          stage('update OS'){
             steps {
-            sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i /OS-update-ansible-jenkins/inventory update.yml'
+            //sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i /OS-update-ansible-jenkins/inventory update.yml'
+             sh label: '', script: 'ansiblePlaybook credentialsId: 'private_key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory.inv', playbook: 'update.yml''
             }
             }
         
