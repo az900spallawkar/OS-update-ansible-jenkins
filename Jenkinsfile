@@ -38,8 +38,8 @@ pipeline {
              
          stage('update OS'){
             steps {
-            //sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i /OS-update-ansible-jenkins/inventory update.yml'
-             ansiblePlaybook credentialsId: 'private_key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory.inv', playbook: 'update.yml'
+             sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i inventory.inv update.yml'
+            // ansiblePlaybook credentialsId: 'private_key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory.inv', playbook: 'update.yml'
             }
             }
         
