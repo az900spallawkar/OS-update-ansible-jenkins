@@ -44,6 +44,12 @@ pipeline {
             // ansiblePlaybook credentialsId: 'private_key', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory.inv', playbook: 'update.yml'
             }
             }
+           stage('Make sure updates done') {
+            steps {
+            sh label: '', script: 'ansible [inventory.inv] -a lsb-release'
+             
+              }
+             }
         
       }
 }
