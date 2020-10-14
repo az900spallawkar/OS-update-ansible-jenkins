@@ -8,10 +8,11 @@ pipeline {
  
     stages {
     
-        stage('SCM checkout')
+        stage('SCM checkout') {
             steps {
             git "https:/https://github.com/az900spallawkar/OS-update-ansible-jenkins"
             }
+        }
         stage('Ansible init') {
             steps {
              script {
@@ -25,14 +26,14 @@ pipeline {
         
         stage('create snapshot for backup') {
             steps {
-            sh "aws ec2 create-snapshot --volume-id vol-038ad9d9f9963432a --description "This is my ansible-jenkins volume snapshot""
+            sh label: '', script: 'aws ec2 create-snapshot --volume-id vol-038ad9d9f9963432a --description "This is my ansible-jenkins volume snapshot"'
               }
              }
              
-        stage('update OS')
+         stage('update OS'){
             steps {
-            sh "ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i inventory, update.yml"
-
+            sh label: '', script: 'ansible-playbook -u ubuntu --key-file /var/lib/jenkins/.ssh/jenkinskey -i inventory, update.yml'
+            }
             }
         
       }
