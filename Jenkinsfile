@@ -10,7 +10,7 @@ pipeline {
     
         stage('SCM checkout') {
             steps {
-            git "https:/https://github.com/az900spallawkar/OS-update-ansible-jenkins"
+            git "https://github.com/az900spallawkar/OS-update-ansible-jenkins"
             }
         }
         stage('Ansible init') {
