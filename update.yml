@@ -4,7 +4,7 @@
   become_user: root
   tasks:
     - name: Update apt repo and cache on all Debian/Ubuntu boxes and only run "update_cache=yes" if the last one is more than 3600 seconds ago
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt: update_cache=yes upgrade=full force_apt_get=yes cache_valid_time=3600
 
     - name: Upgrade all packages on servers
       apt: upgrade=dist force_apt_get=yes
@@ -33,3 +33,10 @@
         post_reboot_delay: 30
         test_command: uptime
       when: reboot_required_file.stat.exists
+ 
+ #   Use he reboot module for ansible 2.7+
+ #   - name: Reboot the server
+ #     command: reboot
+ #     async: 0
+ #     poll: 0
+      
