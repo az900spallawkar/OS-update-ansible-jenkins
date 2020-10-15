@@ -14,6 +14,7 @@
 
     - name: Run do-release-upgrade non-interactively.
       command: do-release-upgrade -f DistUpgradeViewNonInteractive
+      check_mode: yes
       
     - name: Remove useless ackages from the cache and remove dependencies that are no longer required
       apt:
