@@ -11,7 +11,10 @@
       
     - name: Ensure update-manager-core is installed.
       apt: name=update-manager-core state=present
-
+      
+   - block:
+    - debug: 
+        msg: 'This server is runing Ubuntu 20.04 LTS and will be upgraded if needed'
     - name: Run do-release-upgrade non-interactively.
       command: do-release-upgrade -f DistUpgradeViewNonInteractive
       check_mode: yes
