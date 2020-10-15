@@ -11,13 +11,10 @@
       
     - name: Ensure update-manager-core is installed.
       apt: name=update-manager-core state=present
-      
-   - block:
-    - debug: 
-        msg: 'This server is runing Ubuntu 20.04 LTS and will be upgraded if needed'
+     
     - name: Run do-release-upgrade non-interactively.
       command: do-release-upgrade -f DistUpgradeViewNonInteractive
-      check_mode: yes
+      when: ansible_facts['distribution_major_version']=="18.04"
       
     - name: Remove useless ackages from the cache and remove dependencies that are no longer required
       apt:
