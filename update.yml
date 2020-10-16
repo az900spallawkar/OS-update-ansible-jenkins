@@ -2,6 +2,7 @@
 - hosts: servers
   become: true
   become_user: root
+  serial: 1
   tasks:
     - name: Update apt repo and cache on all Debian/Ubuntu boxes and only run "update_cache=yes" if the last one is more than 3600 seconds ago
       apt: update_cache=yes upgrade=full force_apt_get=yes cache_valid_time=3600
@@ -16,7 +17,7 @@
       command: do-release-upgrade -f DistUpgradeViewNonInteractive
       when: ansible_facts['distribution_major_version']=="18.04"
       
-    - name: Remove useless ackages from the cache and remove dependencies that are no longer required
+    - name: Remove useless packages from the cache and remove dependencies that are no longer required
       apt:
         autoclean: yes
         autoremove: yes
